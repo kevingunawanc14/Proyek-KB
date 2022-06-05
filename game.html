@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <!-- JQUERY -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <title>Smart Cleaner 4.0 🤖</title>
+
+    <style>
+        #room {
+            width: max-content;
+        }
+
+        .tile {
+            width: 128px;
+            height: 128px;
+            float: left;
+        }
+
+        .go_next {
+            float: none;
+        }
+
+        img {
+            min-width: -webkit-fill-available;
+            min-height: -webkit-fill-available;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- task -->
+    <!-- otomatisasi robot -->
+    <!-- fitur pilih2 robot -->
+    <!-- fitur ganti theme map -->
+    <!-- fitur jenis2 kotoran -->
+    <!-- count timer step -->
+    <!-- pengecekan keluar dari map -->
+
+    <p>Choose your background color:</p>
+    <div>
+        <input type="color" id="bg" name="bg"
+               value="#ffffff" onchange="gantiWarnaMap(this.value);">
+        <label>Headcc</label>
+    </div>
+
+    <div id="room">
+
+    </div>
+
+    <button type="button" class="btn btn-primary m-1" onclick="letakRobot()">Start</button>
+
+
+    <img src="assets/robot.gif" alt="Computer man" style="width:50px;height:50px;">
+
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+
+    <script>
+        var robot = "";
+
+        function generateRoom(size_x, size_y) {
+            var str = '';
+            for (let i = 0; i < size_y; i++) {
+                for (let j = 0; j < size_x; j++) {
+                    str += "<div class='tile border border-1 rounded ' id='" + i + "" + j + "'></div>";
+                }
+                str += "<div class='tile go_next'></div>";
+            }
+            document.getElementById("room").innerHTML = str;
+        }
+        
+        function letakKotoran() {
+            while (true) {
+                let inputanUser = prompt("Masukan Posisi Kotoran 💩");
+                
+                document.getElementById(inputanUser).innerHTML += "💩";
+                
+                let inputanMauInputLagiGak = confirm("Mau Input Lagi Kotoranya ❓");
+                if (inputanMauInputLagiGak) {
+                    
+                } else {
+                    // letakRobot();
+                }
+            }
+        }
+        
+        function letakRobot() {
+            var inputanUser = prompt("Masukan Posisi Robot 🤖");
+            document.getElementById(inputanUser).innerHTML = `<img src="assets/robot.gif" alt="Computer man" style="width:50px;height:50px;">`;
+            // alert(size_x)
+            // if(substring(inputanUser(0,1)  ) > )
+            
+            robot = inputanUser;
+            
+            
+            
+            BFS(robot);
+        }
+
+        function letakPerabot() {
+
+        }
+
+        function moveRobot(where, from) {
+            if (where.substring(0, 1) != -1 && where.substring(1, 2) != -1
+                && from.substring(0, 1) != -1 && from.substring(1, 2) != -1
+                && from.substring(0, 1) != parseInt(size_x) && from.substring(1, 2) != parseInt(size_x)
+                && where.substring(0, 1) != parseInt(size_x) && where.substring(1, 2) != parseInt(size_x)) {
+
+                console.log(where,from);
+              
+                document.getElementById(where).innerHTML = `<img src="assets/robot.gif" alt="Computer man" style="width:50px;height:50px;">`;
+                document.getElementById(from).innerHTML = `<img src="assets/robot.gif" alt="Computer man" style="width:50px;height:50px;opacity:0.25;">`;  
+               
+               
+
+            }
+
+        }
+
+        
+        function BFS(start) {
+            // 0,0 atau 00
+            let explored = [start];
+            let queue = [start];
+            
+            while (queue.length > 0) {
+                let u = queue.shift();
+                
+                let first = u.substring(0, 1);
+                let last = u.substring(1, 2);
+                
+                let branch = [
+                    first + "" + (parseInt(last) + 1),
+                    first + "" + (parseInt(last) - 1),
+                    (parseInt(first) + 1) + "" + last,
+                    (parseInt(first) - 1) + "" + last
+                ];
+                
+                for (let i = 0; i < branch.length; i++) {
+                    if (!explored.includes(branch[i])) {
+                        // console.log("Not found!");
+                        
+                        moveRobot(branch[i], u);
+                        
+                        explored.push(branch[i]);
+                        queue.push(branch[i]);
+                        // explored[explored.length] = branch[i];
+                        // queue[queue.length] = branch[i];
+                    }
+                }
+                // console.log(branch);
+            }
+            // console.log(explored);
+        }
+        
+        var size_x = 5
+        var size_y = 5
+        
+        generateRoom(size_x, size_y);
+        
+        function gantiWarnaMap(warna) {
+            // loop class
+            
+            document.body.style.backgroundColor = warna;
+            
+        }
+        </script>
+</body>
+
+
+
+</html>
