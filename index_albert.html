@@ -73,8 +73,6 @@
             }, 1000)
         }
 
-        myLoop();
-
 
         function loadVar() {
             robotPos = [0, 0];
@@ -84,7 +82,7 @@
             robotStr_ = `<img src="assets/robot.gif" alt="Computer man" style="width:50px;height:50px;opacity:0.25;">`;
             trashStr = `<img src="assets/sampah.png" alt="Trash">`;
 
-            max_move = 25;
+            max_move = 10;
             move_list = [];
         }
 
@@ -113,7 +111,6 @@
                 var bot = [u[0] - 1, u[1]];
 
                 var branch = [right, left, top, bot];
-                var mark = [];
 
                 for (let i = branch.length - 1; i >= 0; i--) {
                     if (branch[i][0] == -1 || branch[i][0] == map_size[0] || branch[i][1] == -1 || branch[i][1] == map_size[1]) {
@@ -130,6 +127,8 @@
 
                 current_move += 1;
             }
+            console.log(move_list);
+            myLoop();
         }
 
         function generateRoom(size_x, size_y) {
