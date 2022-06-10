@@ -41,6 +41,7 @@
 
     </div>
 
+<<<<<<< Updated upstream
     ROBOT
     x = <input type="text" id="robot_x">
     y = <input type="text" id="robot_y">
@@ -52,6 +53,19 @@
     x = <input type="text" id="kotoran_x">
     y = <input type="text" id="kotoran_y">
     <button onclick="letakKotoran()">RUN</button>
+=======
+    <!-- ROBOT
+    x = <input type="text" id="robot_x">
+    y = <input type="text" id="robot_y"> -->
+    <button onclick="BFS([0, 0])">RUN</button>
+
+    <br>
+
+    <!-- KOTORAN
+    x = <input type="text" id="kotoran_x">
+    y = <input type="text" id="kotoran_y">
+    <button onclick="letakKotoran()">RUN</button> -->
+>>>>>>> Stashed changes
 
     <!-- Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
@@ -59,6 +73,7 @@
         crossorigin="anonymous"></script>
 
     <script>
+<<<<<<< Updated upstream
         var kotoranArr = [];
         var robotPos = [0, 0];
 
@@ -163,6 +178,93 @@
         }
 
         generateRoom(5, 5);
+=======
+        loadVar();
+        generateRoom(5, 6);
+        spawnRobot(0, 0);
+        // BFS([0, 0]);
+
+        function myLoop() {
+            setTimeout(function () {
+                console.log(move_list[0][0] + ", " + move_list[0][1]);
+                spawnRobot(move_list[0][0], move_list[0][1]);
+                move_list.shift();
+                myLoop();
+            }, 1000)
+        }
+
+        myLoop();
+
+
+        function loadVar() {
+            robotPos = [0, 0];
+            trashPos = [];
+
+            robotStr = `<img src="assets/robot.gif" alt="Computer man" style="width:50px;height:50px;">`;
+            robotStr_ = `<img src="assets/robot.gif" alt="Computer man" style="width:50px;height:50px;opacity:0.25;">`;
+            trashStr = `<img src="assets/sampah.png" alt="Trash">`;
+
+            max_move = 25;
+            move_list = [];
+        }
+
+        function spawnRobot(x, y) {
+            document.getElementById(robotPos[0] + "" + robotPos[1]).innerHTML = robotStr_;
+            robotPos = [x, y];
+            document.getElementById(x + "" + y).innerHTML = robotStr;
+        }
+
+        function BFS(start) {
+            var q = [start];
+            var x = [start];
+
+            var current_move = 0;
+
+            while (q.length > 0 && current_move < max_move) {
+                var u = q.shift();
+                // console.log(u);
+                u[0] = parseInt(u[0]);
+                u[1] = parseInt(u[1]);
+
+                // for each edge in vertex u
+                var right = [u[0], u[1] + 1];
+                var left = [u[0], u[1] - 1];
+                var top = [u[0] + 1, u[1]];
+                var bot = [u[0] - 1, u[1]];
+
+                var branch = [right, left, top, bot];
+                var mark = [];
+
+                for (let i = branch.length - 1; i >= 0; i--) {
+                    if (branch[i][0] == -1 || branch[i][0] == map_size[0] || branch[i][1] == -1 || branch[i][1] == map_size[1]) {
+                        branch.splice(i, 1);
+                    }
+                }
+
+                var found = false;
+                for (let i = 0; i < branch.length; i++) {
+                    x.push(branch[i]);
+                    move_list.push(branch[i]);
+                    q.push(branch[i]);
+                }
+
+                current_move += 1;
+            }
+        }
+
+        function generateRoom(size_x, size_y) {
+            var str = '';
+            for (let i = 0; i < size_y; i++) {
+                for (let j = 0; j < size_x; j++) {
+                    str += "<div class='tile border border-1 rounded ' id='" + j + "" + i + "'></div>";
+                }
+                str += "<div class='tile go_next'></div>";
+            }
+            document.getElementById("room").innerHTML = str;
+
+            map_size = [parseInt(size_x), parseInt(size_y)];
+        }
+>>>>>>> Stashed changes
     </script>
 </body>
 
