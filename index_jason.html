@@ -100,9 +100,9 @@
 
         var size_x = 5
         var size_y = 5
-        var robotPos = [];
-        var kotoranPos = [];
-        var perabotPos = [];
+        var robotPos = []
+        var kotoranPos = []
+        var perabotPos = []
 
         function generateRoom(size_x, size_y) {
             var str = '';
@@ -130,17 +130,36 @@
             
             for (var i = 0; i < 1; i++) {
                 r = null
+                notempty = false
                 do {
                     r = getRandomLoc()
-                } while (perabotPos.includes(r))
+                    notempty = false
+                    for (let i = 0; i < perabotPos.length; i++) {
+		                if (r[0] == perabotPos[i][0] && r[1] == perabotPos[i][1]) {
+                            notempty = true
+                        }
+	                }
+                } while (notempty)
                 document.getElementById(String(r)).innerHTML += "🤖";
             }
             
             for (var i = 0; i < 5; i++) {
                 r = null
+                notempty = false
                 do {
                     r = getRandomLoc()
-                } while (perabotPos.includes(r) && robotPos.includes(r))
+                    notempty = false
+                    for (let i = 0; i < perabotPos.length; i++) {
+		                if (r[0] == perabotPos[i][0] && r[1] == perabotPos[i][1]) {
+                            notempty = true
+                        }
+	                }
+                    for (let i = 0; i < robotPos.length; i++) {
+		                if (r[0] == robotPos[i][0] && r[1] == robotPos[i][1]) {
+                            notempty = true
+                        }
+	                }
+                } while (notempty)
                 document.getElementById(String(r)).innerHTML += "💩";
             }
         }

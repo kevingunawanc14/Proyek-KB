@@ -45,6 +45,8 @@
     x = <input type="text" id="robot_x">
     y = <input type="text" id="robot_y"> -->
     <button onclick="BFS([0, 0])">RUN</button>
+    
+    <button onclick="addSampahRandom()">xxxx</button>
 
     <br>
 
@@ -60,7 +62,7 @@
 
     <script>
         loadVar();
-        generateRoom(5, 6);
+        generateRoom(10, 10);
         spawnRobot(0, 0);
         // BFS([0, 0]);
 
@@ -73,7 +75,6 @@
             }, 1000)
         }
 
-
         function loadVar() {
             robotPos = [0, 0];
             trashPos = [];
@@ -82,17 +83,18 @@
             robotStr_ = `<img src="assets/robot.gif" alt="Computer man" style="width:50px;height:50px;opacity:0.25;">`;
             trashStr = `<img src="assets/sampah.png" alt="Trash">`;
 
-            max_move = 10;
+            max_move = 400;
             move_list = [];
         }
 
         function spawnRobot(x, y) {
-            document.getElementById(robotPos[0] + "" + robotPos[1]).innerHTML = robotStr_;
+            document.getElementById(robotPos[0] + "" + robotPos[1]).innerHTML = "";
             robotPos = [x, y];
             document.getElementById(x + "" + y).innerHTML = robotStr;
         }
 
         function BFS(start) {
+          
             var q = [start];
             var x = [start];
 
@@ -109,31 +111,44 @@
                 var left = [u[0], u[1] - 1];
                 var top = [u[0] + 1, u[1]];
                 var bot = [u[0] - 1, u[1]];
+                var topleft = [u[0] - 1, u[1] - 1];
+                var topright = [u[0] - 1, u[1] + 1];
+                var botleft = [u[0] + 1, u[1] - 1];
+                var botright = [u[0] + 1, u[1] + 1];
 
-                var branch = [right, left, top, bot];
+                var branch = [right, left, top, bot, topleft, topright, botleft, botright];
 
                 for (let i = branch.length - 1; i >= 0; i--) {
                     if (branch[i][0] == -1 || branch[i][0] == map_size[0] || branch[i][1] == -1 || branch[i][1] == map_size[1]) {
                         branch.splice(i, 1);
                     }
                 }
-
-                console.log("Branch: " + branch);
-                console.log("Explored: " + x);
-
+    
                 var found = false;
+                var panjangVisited = x.length
+
                 for (let i = 0; i < branch.length; i++) {
-                    if (!x.includes(branch[i])) {
-                        console.log("move to: " + branch[i]);
+                    for (let j = 0; j < panjangVisited; j++) {
+                        // console.log(x[j][0]+" == "+branch[i][0]);
+                        // console.log(x[j][1]+" == "+branch[i][1]);
+                        if (x[j][0] == branch[i][0] && x[j][1] == branch[i][1]) {
+                            found = true;
+                        }
+                    }
+
+                    if (!found) {
                         move_list.push(branch[i]);
+                        console.log(branch[i])
                         x.push(branch[i]);
-                        q.push(branch[i]);
+                        q.push(branch[i]);        
                     }
                 }
 
                 current_move += 1;
             }
-            console.log(move_list);
+            // console.log(move_list);
+            console.log("________");
+
             myLoop();
         }
 
@@ -149,7 +164,13 @@
 
             map_size = [parseInt(size_x), parseInt(size_y)];
         }
-    </script>
+    
+        function addSampahRandom(){
+            document.getElementById(Math.floor(Math.random() * map_size[0])+""+Math.floor(Math.random() * map_size[1])).innerHTML = '<img src="assets/sampah.png" alt="Trash"  style="width:50px;height:50px;">'
+        }
+   
+   
+   </script>
 </body>
 
 </html>
