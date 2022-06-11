@@ -118,9 +118,13 @@
                     }
                 }
 
+                console.log("Branch: " + branch);
+                console.log("Explored: " + x);
+
                 var found = false;
                 for (let i = 0; i < branch.length; i++) {
                     if (!x.includes(branch[i])) {
+                        console.log("move to: " + branch[i]);
                         move_list.push(branch[i]);
                         x.push(branch[i]);
                         q.push(branch[i]);
