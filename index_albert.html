@@ -120,9 +120,11 @@
 
                 var found = false;
                 for (let i = 0; i < branch.length; i++) {
-                    x.push(branch[i]);
-                    move_list.push(branch[i]);
-                    q.push(branch[i]);
+                    if (!x.includes(branch[i])) {
+                        move_list.push(branch[i]);
+                        x.push(branch[i]);
+                        q.push(branch[i]);
+                    }
                 }
 
                 current_move += 1;
