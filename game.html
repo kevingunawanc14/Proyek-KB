@@ -141,9 +141,6 @@
     <script>
         var size_x = 6
         var size_y = 7
-        var robotPos = [];
-        var kotoranPos = [];
-        var perabotPos = [];
 
         generateRoom(size_x, size_y);
        
@@ -157,36 +154,17 @@
             }
             document.getElementById("room").innerHTML = str;
         }
-
-        function getRandomLoc() {
-                return [Math.floor(Math.random() * size_y), Math.floor(Math.random() * size_x)]
-        }
         
         function Randomize() {
         	generateRoom(size_x, size_y)
             
-        	for (var i = 0; i < 5; i++) {
-            	r = getRandomLoc()
-            	perabotPos.push([r])
-                document.getElementById(String(r)).style.backgroundColor = "black";
-            }
-            
-            for (var i = 0; i < 1; i++) {
-                r = null
-                do {
-                    r = getRandomLoc()
-                } while (perabotPos.includes(r))
-            	robotPos.push([r])
-                document.getElementById(String(r)).innerHTML += "🤖";
-            }
-            
-            for (var i = 0; i < 5; i++) {
-                r = null
-                do {
-                    r = getRandomLoc()
-                } while (perabotPos.includes(r) && robotPos.includes(r))
-                kotoranPos.push([r])
-                document.getElementById(String(r)).innerHTML += "💩";
+            for (var i = 0; i < size_x; i++) {
+                for (var j = 0; j < size_y; j++) {
+                    r = Math.round(Math.random() * 4)
+                    if (r == 1){document.getElementById(i + "," + j).innerHTML += "💩";}
+                    if (r == 2){document.getElementById(i + "," + j).style.backgroundColor = 'black';}
+                    if (r == 0){if (robot){robot = false; document.getElementById(i + "," + j).innerHTML += "🤖";}}
+                }
             }
         }
 
