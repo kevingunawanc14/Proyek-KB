@@ -90,28 +90,7 @@
             var current_move = 0;
 
             while (q.length > 0 && current_move < max_move) {
-                
-                
                 var u = q.shift();
-
-                
-               
-
-
-                u[0] = parseInt(u[0]);
-                u[1] = parseInt(u[1]);
-
-                // for each edge in vertex u
-                var topleft = [u[0] - 1, u[1] - 1];
-                var top = [u[0] - 1, u[1]];
-                var topright = [u[0] + 1, u[1] - 1];
-                var right = [u[0], u[1] + 1];
-                var botright = [u[0] + 1, u[1] + 1];
-                var bot = [u[0] + 1, u[1]];
-                var botleft = [u[0] - 1, u[1] + 1];
-                var left = [u[0], u[1] - 1];
-
-                var branch = [topleft, top, topright, right, botright, bot, botleft, left];
                 u[0] = parseInt(u[0]);
                 u[1] = parseInt(u[1]);
 
@@ -133,26 +112,6 @@
                         branch.splice(i, 1);
                     }
                 }
-                
-
-                var found = false;
-                var panjangVisited = x.length
-
-                for (let i = 0; i < branch.length; i++) {
-                    for (let j = 0; j < panjangVisited; j++) {
-                        // console.log(x[j][0]+" -- "+branch[i][0]);
-                        // console.log(x[j][1]+" -- "+branch[i][1]);
-                        if (x[j][0] == branch[i][0] && x[j][1] == branch[i][1]) {
-                            found = true;
-                        }
-                    }
-                    
-                    if (!found) {
-                        move_list.push(branch[i]);
-                        // console.log(branch[i])
-                        x.push(branch[i]);
-                        q.push(branch[i]);  
-                    }
 
                 for (let i = 0; i < branch.length; i++) {
                     move_list.push(branch[i]);
@@ -161,15 +120,8 @@
                     q.push(branch[i]);
                 }
 
-                // x yang sudah di kunjungi
-                // q yang queue
-
-                
-
-
                 current_move += 1;
             }
-            // console.log(move_list);
 
             move_list = multiDimensionalUnique(move_list);
             console.log(move_list);
@@ -193,7 +145,7 @@
             var str = '';
             for (let i = 0; i < size_y; i++) {
                 for (let j = 0; j < size_x; j++) {
-                    str += "<div class='tile border border-1 rounded ' id='" + i + "" + j + "'></div>";
+                    str += "<div class='tile border border-1 rounded ' id='" + j + "" + i + "'></div>";
                 }
                 str += "<div class='tile go_next'></div>";
             }
