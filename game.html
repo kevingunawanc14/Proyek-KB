@@ -54,45 +54,73 @@
 
     <i class="fas fa-moon" onclick="modeDarkLight(this.className)" style="cursor: pointer;">Darkmode</i>
 
+    <div class="accordion m-2" id="accordionExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                    aria-expanded="true" aria-controls="collapseOne">
+                    How To Play 🎮
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <strong>1. Pilih Ukuran Map 🗺</strong>
+                </div>
+                <div class="accordion-body">
+                    <strong>2. Pilih Robot 🤖</strong>
+                </div>
+                <div class="accordion-body">
+                    <strong>3. Masukan Posisi Robot Dengan Cara Klik Salah Satu Bagian Di Map </strong>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
     <div id="room">
 
     </div>
 
-    <button type="button" class="btn btn-primary m-1" onclick="letakRobot()">Start</button>
-    <button type="button" class="btn btn-primary m-1" onclick="Randomize()">Random</button>
-    <button id="buttonRobotView" type="button" class="btn btn-primary m-1" onclick="displayRobot(this.innerHTML)">View All Robot</button>
+    <!-- <button type="button" class="btn btn-primary m-1" onclick="BFS()">Start</button> -->
+    <button id="buttonSampah" type="button" style="display: none;" class="btn btn-primary m-1" onclick="addSampahRandom()">Add Sampah</button>
+    <button id="buttonRobotView" style="display: none;" type="button" class="btn btn-primary m-1"
+        onclick="displayRobot(this.innerHTML)">View All Robot</button>
+    <button id="generateMap" type="button" class="btn btn-primary m-1" onclick="generateRoom(this.innerHTML)">Generate
+        Map</button>
 
 
-    <div id="listRobot" class="container-fluid mt-3" style="display: none;" >
+
+    <div id="listRobot" class="container-fluid mt-3" style="display: none;">
         <div class="row m-2">
             <div class="col">
                 <div class="card">
-                    <img src="assets/robot.gif" class="card-img-top" alt="...">
+                    <img src="assets/robot_0.gif" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Robot Kay-O</h5>
                         <p class="card-text">They're supressed</p>
-                        <a href="#" class="btn btn-primary">Pilih</a>
+                        <a href="#" class="btn btn-primary" onclick="pilihRobot(1)">Pilih</a>
                     </div>
                 </div>
             </div>
             <div class="col">
                 <div class="card">
-                    <img src="assets/robot.gif" class="card-img-top" alt="...">
+                    <img src="assets/robot_1.gif" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Robot Kay-O</h5>
                         <p class="card-text">They're supressed</p>
-                        <a href="#" class="btn btn-primary">Pilih</a>
+                        <a href="#" class="btn btn-primary" onclick="pilihRobot(2)">Pilih</a>
                     </div>
                 </div>
             </div>
             <div class="col">
                 <div class="card">
-                    <img src="assets/robot.gif" class="card-img-top" alt="...">
+                    <img src="assets/robot_2.gif" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Robot Kay-O</h5>
                         <p class="card-text">They're supressed</p>
-                        <a href="#" class="btn btn-primary">Pilih</a>
+                        <a href="#" class="btn btn-primary" onclick="pilihRobot(3)">Pilih</a>
                     </div>
                 </div>
             </div>
@@ -100,31 +128,31 @@
         <div class="row m-2">
             <div class="col">
                 <div class="card">
-                    <img src="assets/robot.gif" class="card-img-top" alt="...">
+                    <img src="assets/robot_3.gif" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Robot Kay-O</h5>
                         <p class="card-text">They're supressed</p>
-                        <a href="#" class="btn btn-primary">Pilih</a>
+                        <a href="#" class="btn btn-primary" onclick="pilihRobot(4)">Pilih</a>
                     </div>
                 </div>
             </div>
             <div class="col">
                 <div class="card">
-                    <img src="assets/robot.gif" class="card-img-top" alt="...">
+                    <img src="assets/robot_4.gif" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Robot Kay-O</h5>
                         <p class="card-text">They're supressed</p>
-                        <a href="#" class="btn btn-primary">Pilih</a>
+                        <a href="#" class="btn btn-primary" onclick="pilihRobot(5)">Pilih</a>
                     </div>
                 </div>
             </div>
             <div class="col">
                 <div class="card">
-                    <img src="assets/robot.gif" class="card-img-top" alt="...">
+                    <img src="assets/robot_6.gif" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Robot Kay-O</h5>
                         <p class="card-text">They're supressed</p>
-                        <a href="#" class="btn btn-primary">Pilih</a>
+                        <a href="#" class="btn btn-primary" onclick="pilihRobot(6)">Pilih</a>
                     </div>
                 </div>
             </div>
@@ -139,120 +167,167 @@
         crossorigin="anonymous"></script>
 
     <script>
-        var size_x = 6
-        var size_y = 7
+        loadVar();
 
-        generateRoom(size_x, size_y);
-       
-        function generateRoom(size_x, size_y) {
+
+        function loadVar() {
+            robotPos = [0, 0];
+            trashPos = [];
+
+            robotStr = `<img src="assets/robot.gif" alt="Computer man" style="width:50px;height:50px;">`;
+            robotStr_ = `<img src="assets/robot.gif" alt="Computer man" style="width:50px;height:50px;opacity:0.25;">`;
+            trashStr = `<img src="assets/sampah.png" alt="Trash">`;
+
+         
+            move_list = [];
+
+            tidakBisaKlikMapLagi = true
+        }
+
+        function generateRoom() {
+
+            let size_x = prompt("Masukan ukuran x ");
+            let size_y = prompt("Masukan ukuran y ");
+
+
             var str = '';
             for (let i = 0; i < size_y; i++) {
                 for (let j = 0; j < size_x; j++) {
-                    str += "<div class='tile border border-1 rounded ' id='" + i + "," + j + "'></div>";
+                    str += "<div class='tile border border-1 rounded ' id='" + j + "," + i + "'></div>";
                 }
                 str += "<div class='tile go_next'></div>";
             }
             document.getElementById("room").innerHTML = str;
-        }
-        
-        function Randomize() {
-        	generateRoom(size_x, size_y)
-            
-            for (var i = 0; i < size_x; i++) {
-                for (var j = 0; j < size_y; j++) {
-                    r = Math.round(Math.random() * 4)
-                    if (r == 1){document.getElementById(i + "," + j).innerHTML += "💩";}
-                    if (r == 2){document.getElementById(i + "," + j).style.backgroundColor = 'black';}
-                    if (r == 0){if (robot){robot = false; document.getElementById(i + "," + j).innerHTML += "🤖";}}
-                }
-            }
+
+            map_size = [parseInt(size_x), parseInt(size_y)];
+
+            document.getElementById("buttonRobotView").style.display = "inline-block"
+            document.getElementById("buttonSampah").style.display = "inline-block"
+
+            max_move = (size_x*size_y)*10
+
+            // alert(max_move)
+
         }
 
-        function letakKotoran() {
-            while (true) {
-                let inputanUser = prompt("Masukan Posisi Kotoran 💩");
-
-                document.getElementById(inputanUser).innerHTML += "💩";
-
-                let inputanMauInputLagiGak = confirm("Mau Input Lagi Kotoranya ❓");
-                if (inputanMauInputLagiGak) {
-
-                } else {
-                    // letakRobot();
-                }
-            }
+        function runRobot() {
+            setTimeout(function () {
+                console.log(move_list[0][0] + ", " + move_list[0][1]);
+                spawnRobot(move_list[0]);
+                move_list.shift();
+                runRobot();
+            }, 1000)
         }
 
-        function letakRobot() {
-            var inputanUser = prompt("Masukan Posisi Robot 🤖");
-            document.getElementById(inputanUser).innerHTML = `<img src="assets/robot.gif" alt="Computer man" style="width:50px;height:50px;">`;
-            robot = inputanUser;
+        function spawnRobot(coordinate) {
+            document.getElementById(robotPos[0] + "," + robotPos[1]).innerHTML = "";
+            x = coordinate[0];
+            y = coordinate[1];
+            robotPos = [x, y];
+            document.getElementById(x + "," + y).innerHTML = robotStr;
 
-            BFS(robot);
+            mapOffToKlik()
         }
-
-
-
 
         function BFS(start) {
-            // 0,0 atau 00
-            let explored = [start];
-            let queue = [start];
+            var q = [start];
+            var x = [start];
 
-            while (queue.length > 0) {
-                let u = queue.shift();
+            var current_move = 0;
 
-                let first = u.substring(0, 1);
-                let last = u.substring(1, 2);
+            while (q.length > 0 && current_move < max_move) {
+                var u = q.shift();
+                u[0] = parseInt(u[0]);
+                u[1] = parseInt(u[1]);
 
-                let branch = [
-                    first + "" + (parseInt(last) + 1),
-                    first + "" + (parseInt(last) - 1),
-                    (parseInt(first) + 1) + "" + last,
-                    (parseInt(first) - 1) + "" + last
-                ];
+                var right = [u[0], u[1] + 1];
+                var left = [u[0], u[1] - 1];
+                var top = [u[0] + 1, u[1]];
+                var bot = [u[0] - 1, u[1]];
+                var topLeft = [u[0] - 1, u[1] - 1];
+                var topRight = [u[0] - 1, u[1] + 1];
+                var botLeft = [u[0] + 1, u[1] - 1];
+                var botRight = [u[0] + 1, u[1] + 1];
 
-                for (let i = 0; i < branch.length; i++) {
-                    if (!explored.includes(branch[i])) {
-                        moveRobot(branch[i], u);
-                        explored.push(branch[i]);
-                        queue.push(branch[i]);
+                var branch = [right, left, top, bot, topLeft, topRight, botLeft, botRight];
+
+                for (let i = branch.length - 1; i >= 0; i--) {
+                    if (branch[i][0] == -1 || branch[i][0] == map_size[0] || branch[i][1] == -1 || branch[i][1] == map_size[1]) {
+                        branch.splice(i, 1);
+                    } else if (branch[i][0] == 0 && branch[i][1] == 0) {
+                        branch.splice(i, 1);
                     }
                 }
+
+                for (let i = 0; i < branch.length; i++) {
+                    move_list.push(branch[i]);
+                    console.log(branch[i])
+                    x.push(branch[i]);
+                    q.push(branch[i]);
+                }
+
+                current_move += 1;
             }
+
+            move_list = multiDimensionalUnique(move_list);
+            console.log(move_list);
+
+            runRobot();
         }
 
-        
-        function moveRobot(where, from) {
-        if (where.substring(0, 1) != -1 && where.substring(1, 2) != -1
-        && from.substring(0, 1) != -1 && from.substring(1, 2) != -1
-                && from.substring(0, 1) != parseInt(size_x) && from.substring(1, 2) != parseInt(size_x)
-                && where.substring(0, 1) != parseInt(size_x) && where.substring(1, 2) != parseInt(size_x)) {
-
-                console.log(where, from);
-
-                document.getElementById(where).innerHTML = `<img src="assets/robot.gif" alt="Computer man" style="width:50px;height:50px;">`;
-                document.getElementById(from).innerHTML = `<img src="assets/robot.gif" alt="Computer man" style="width:50px;height:50px;opacity:0.25;">`;
+        function multiDimensionalUnique(arr) {
+            var uniques = [];
+            var itemsFound = {};
+            for (var i = 0, l = arr.length; i < l; i++) {
+                var stringified = JSON.stringify(arr[i]);
+                if (itemsFound[stringified]) { continue; }
+                uniques.push(arr[i]);
+                itemsFound[stringified] = true;
             }
+            return uniques;
         }
-       
 
-
-
-
-
+        function addSampahRandom() {
+            pilihanSampah = Math.floor(Math.random() * 6)
+            
+            if (pilihanSampah == 0) {
+                dataSampah = '<img src="assets/sampah_0.png" alt="Trash"  style="width:50px;height:50px;">'
+            } else if (pilihanSampah == 1) {
+                dataSampah = '<img src="assets/sampah_1.gif" alt="Trash"  style="width:50px;height:50px;">'
+                
+            } else if (pilihanSampah == 2) {
+                dataSampah = '<img src="assets/sampah_2.gif" alt="Trash"  style="width:50px;height:50px;">'
+                
+            } else if (pilihanSampah == 3) {
+                dataSampah = '<img src="assets/sampah_3.gif" alt="Trash"  style="width:50px;height:50px;">'
+                
+            } else if (pilihanSampah == 4) {
+                dataSampah = '<img src="assets/sampah_4.gif" alt="Trash"  style="width:50px;height:50px;">'
+                
+            } else if (pilihanSampah == 5) {
+                dataSampah = '<img src="assets/sampah_5.gif" alt="Trash"  style="width:50px;height:50px;">'
+                
+            }
+            
+            // loop cek untuk yang sudah terisi sampe ketemu randoman yang beda
+            document.getElementById(Math.floor(Math.random() * map_size[0]) + "," + Math.floor(Math.random() * map_size[1])).innerHTML = dataSampah
+        }
 
         function modeDarkLight(mode) {
 
             if (mode == "fas fa-sun") {
                 document.getElementsByTagName('body')[0].style.backgroundColor = "white";
                 document.getElementsByTagName('body')[0].style.color = "black";
+                document.getElementById("collapseOne").style.backgroundColor = "white"
+
                 document.getElementsByClassName(mode)[0].innerHTML = "Darkmode"
                 document.getElementsByClassName(mode)[0].className = "fas fa-moon"
 
             } else {
                 document.getElementsByTagName('body')[0].style.backgroundColor = "black";
                 document.getElementsByTagName('body')[0].style.color = "white";
+                document.getElementById("collapseOne").style.backgroundColor = "black"
+
                 document.getElementsByClassName(mode)[0].innerHTML = "Lightmode"
                 document.getElementsByClassName(mode)[0].className = "fas fa-sun"
 
@@ -260,21 +335,104 @@
 
         }
 
-        function displayRobot(mode){
-            if(mode == "View All Robot"){
+        function displayRobot(mode) {
+
+            if (mode == "View All Robot") {
+
                 document.getElementById("listRobot").style.display = "block"
                 document.getElementById("buttonRobotView").innerHTML = "Hide All Robot"
 
 
-            }else{
+            } else {
                 document.getElementById("listRobot").style.display = "none"
                 document.getElementById("buttonRobotView").innerHTML = "View All Robot"
 
             }
 
         }
-    
-    
+
+        function pilihRobot(pil) {
+
+            if (pil == 1) {
+                var data = `<img src="assets/robot_0.gif" alt="Computer man" style="width:50px;height:50px;">`;
+                pilihPosisiRobot(data)
+            } else if (pil == 2) {
+                var data = `<img src="assets/robot_1.gif" alt="Computer man" style="width:50px;height:50px;">`
+                pilihPosisiRobot(data)
+
+            } else if (pil == 3) {
+                var data = `<img src="assets/robot_2.gif" alt="Computer man" style="width:50px;height:50px;">`
+                pilihPosisiRobot(data)
+
+            } else if (pil == 4) {
+                var data = `<img src="assets/robot_3.gif" alt="Computer man" style="width:50px;height:50px;">`
+                pilihPosisiRobot(data)
+
+            } else if (pil == 5) {
+                var data = `<img src="assets/robot_4.gif" alt="Computer man" style="width:50px;height:50px;">`
+                pilihPosisiRobot(data)
+
+            } else if (pil == 6) {
+                var data = `<img src="assets/robot_6.gif" alt="Computer man" style="width:50px;height:50px;">`
+                pilihPosisiRobot(data)
+
+            }
+        }
+
+        function pilihPosisiRobot(data) {
+            alert("Silakan Tekan Salah Satu Titik Pada Peta Untuk Meletakan Robot & Permainan Akan Otomatis Termulai ")
+            robotStr = data;
+            mapAktifToKlik()
+        }
+
+        // fungsi untuk meletakan robot setelah memilih robot
+        function mapAktifToKlik() {
+            alert(tidakBisaKlikMapLagi)
+
+            get = document.getElementsByClassName("tile border border-1 rounded")
+
+            // loop
+            // change cursor style to pointer
+
+
+            for (let i = 0; i < get.length; i++) {
+                get[i].style.cursor = "pointer";
+                get[i].onclick = function () {
+                    alert(tidakBisaKlikMapLagi)
+                    if (tidakBisaKlikMapLagi == true) {
+                        spawnRobot(this.id.split(","));
+                        tidakBisaKlikMapLagi = false;
+                        BFS(this.id.split(","));
+                    }
+                };
+
+
+            }
+
+            document.getElementById("buttonRobotView").style.display = "none"
+            document.getElementById("generateMap").style.display = "none"
+            document.getElementById("listRobot").style.display = "none"
+
+
+
+
+
+        }
+
+        function mapOffToKlik() {
+            get = document.getElementsByClassName("tile border border-1 rounded")
+
+            // loop
+            // change cursor style to pointer
+            for (let i = 0; i < get.length; i++) {
+                get[i].style.cursor = "not-allowed";
+
+            }
+
+        }
+
+
+
     </script>
 </body>
 
