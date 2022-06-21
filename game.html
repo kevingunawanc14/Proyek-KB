@@ -68,10 +68,13 @@
                     <strong>1. Pilih Ukuran Map 🗺</strong>
                 </div>
                 <div class="accordion-body">
-                    <strong>2. Pilih Robot 🤖</strong>
+                    <strong>2. Tambah Sampah 🗑</strong>
                 </div>
                 <div class="accordion-body">
-                    <strong>3. Masukan Posisi Robot Dengan Cara Klik Salah Satu Bagian Di Map </strong>
+                    <strong>3. Pilih Robot 🤖</strong>
+                </div>
+                <div class="accordion-body">
+                    <strong>4. Masukan Posisi Robot Dengan Cara Klik Salah Satu Bagian Di Map </strong>
                 </div>
             </div>
         </div>
@@ -101,7 +104,12 @@
                     <div class="card-body">
                         <h5 class="card-title">Robot Kay-O</h5>
                         <p class="card-text">They're supressed</p>
-                        <a href="#" class="btn btn-primary" onclick="pilihRobot(1)">Pilih</a>
+                        <p>Energy Bar 🔋</p>
+                        <div class="progress">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 25%"
+                                aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <a href="#" class="btn btn-primary mt-3" onclick="pilihRobot(1)">Pilih</a>
                     </div>
                 </div>
             </div>
@@ -111,7 +119,12 @@
                     <div class="card-body">
                         <h5 class="card-title">Robot Kay-O</h5>
                         <p class="card-text">They're supressed</p>
-                        <a href="#" class="btn btn-primary" onclick="pilihRobot(2)">Pilih</a>
+                        <p>Energy Bar 🔋</p>
+                        <div class="progress">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 25%"
+                                aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <a href="#" class="btn btn-primary mt-3" onclick="pilihRobot(2)">Pilih</a>
                     </div>
                 </div>
             </div>
@@ -121,7 +134,12 @@
                     <div class="card-body">
                         <h5 class="card-title">Robot Kay-O</h5>
                         <p class="card-text">They're supressed</p>
-                        <a href="#" class="btn btn-primary" onclick="pilihRobot(3)">Pilih</a>
+                        <p>Energy Bar 🔋</p>
+                        <div class="progress">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 25%"
+                                aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <a href="#" class="btn btn-primary mt-3" onclick="pilihRobot(3)">Pilih</a>
                     </div>
                 </div>
             </div>
@@ -133,7 +151,12 @@
                     <div class="card-body">
                         <h5 class="card-title">Robot Kay-O</h5>
                         <p class="card-text">They're supressed</p>
-                        <a href="#" class="btn btn-primary" onclick="pilihRobot(4)">Pilih</a>
+                        <p>Energy Bar 🔋</p>
+                        <div class="progress">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 25%"
+                                aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <a href="#" class="btn btn-primary mt-3" onclick="pilihRobot(4)">Pilih</a>
                     </div>
                 </div>
             </div>
@@ -143,7 +166,12 @@
                     <div class="card-body">
                         <h5 class="card-title">Robot Kay-O</h5>
                         <p class="card-text">They're supressed</p>
-                        <a href="#" class="btn btn-primary" onclick="pilihRobot(5)">Pilih</a>
+                        <p>Energy Bar 🔋</p>
+                        <div class="progress">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 25%"
+                                aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <a href="#" class="btn btn-primary mt-3" onclick="pilihRobot(5)">Pilih</a>
                     </div>
                 </div>
             </div>
@@ -153,13 +181,17 @@
                     <div class="card-body">
                         <h5 class="card-title">Robot Kay-O</h5>
                         <p class="card-text">They're supressed</p>
-                        <a href="#" class="btn btn-primary" onclick="pilihRobot(6)">Pilih</a>
+                        <p>Energy Bar 🔋</p>
+                        <div class="progress">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 25%"
+                                aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <a href="#" class="btn btn-primary mt-3" onclick="pilihRobot(6)">Pilih</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 
 
     <!-- Bootstrap Bundle with Popper -->
@@ -172,13 +204,12 @@
 
 
         function loadVar() {
-            robotPos = [0, 0];
+            robotPos = [];
             trashPos = [];
 
             robotStr = `<img src="assets/robot.gif" alt="Computer man" style="width:50px;height:50px;">`;
             robotStr_ = `<img src="assets/robot.gif" alt="Computer man" style="width:50px;height:50px;opacity:0.25;">`;
             trashStr = `<img src="assets/sampah.png" alt="Trash">`;
-
 
             move_list = [];
 
@@ -202,7 +233,6 @@
 
             map_size = [parseInt(size_x), parseInt(size_y)];
 
-            document.getElementById("buttonRobotView").style.display = "inline-block"
             document.getElementById("buttonSampah").style.display = "inline-block"
 
             max_move = (size_x * size_y) * 10
@@ -213,14 +243,13 @@
 
         function runRobot() {
             setTimeout(function () {
-                console.log(move_list[0][0] + ", " + move_list[0][1]);
-                spawnRobot(move_list[0]);
+                moveRobot(move_list[0]);
                 move_list.shift();
                 runRobot();
             }, 1000)
         }
 
-        function spawnRobot(coordinate) {
+        function moveRobot(coordinate) {
             document.getElementById(robotPos[0] + "," + robotPos[1]).innerHTML = "";
             x = coordinate[0];
             y = coordinate[1];
@@ -241,13 +270,13 @@
                 u[0] = parseInt(u[0]);
                 u[1] = parseInt(u[1]);
 
-                var right = [u[0], u[1] + 1];
-                var left = [u[0], u[1] - 1];
-                var top = [u[0] + 1, u[1]];
-                var bot = [u[0] - 1, u[1]];
+                var bot = [u[0], u[1] + 1];
+                var top = [u[0], u[1] - 1];
+                var right = [u[0] + 1, u[1]];
+                var left = [u[0] - 1, u[1]];
                 var topLeft = [u[0] - 1, u[1] - 1];
-                var topRight = [u[0] - 1, u[1] + 1];
-                var botLeft = [u[0] + 1, u[1] - 1];
+                var botLeft = [u[0] - 1, u[1] + 1];
+                var topRight = [u[0] + 1, u[1] - 1];
                 var botRight = [u[0] + 1, u[1] + 1];
 
                 var branch = [right, left, top, bot, topLeft, topRight, botLeft, botRight];
@@ -270,8 +299,9 @@
                 current_move += 1;
             }
 
+
+
             move_list = multiDimensionalUnique(move_list);
-            console.log(move_list);
 
             runRobot();
         }
@@ -312,6 +342,8 @@
 
             // loop cek untuk yang sudah terisi sampe ketemu randoman yang beda
             document.getElementById(Math.floor(Math.random() * map_size[0]) + "," + Math.floor(Math.random() * map_size[1])).innerHTML = dataSampah
+            document.getElementById("buttonRobotView").style.display = "inline-block"
+
         }
 
         function modeDarkLight(mode) {
@@ -388,7 +420,7 @@
 
         // fungsi untuk meletakan robot setelah memilih robot
         function mapAktifToKlik() {
-            alert(tidakBisaKlikMapLagi)
+
 
             get = document.getElementsByClassName("tile border border-1 rounded")
 
@@ -399,9 +431,10 @@
             for (let i = 0; i < get.length; i++) {
                 get[i].style.cursor = "pointer";
                 get[i].onclick = function () {
-                    alert(tidakBisaKlikMapLagi)
+
                     if (tidakBisaKlikMapLagi == true) {
-                        spawnRobot(this.id.split(","));
+                        robotPos = this.id.split(",");
+                        moveRobot(this.id.split(","));
                         tidakBisaKlikMapLagi = false;
                         BFS(this.id.split(","));
                     }
@@ -413,6 +446,8 @@
             document.getElementById("buttonRobotView").style.display = "none"
             document.getElementById("generateMap").style.display = "none"
             document.getElementById("listRobot").style.display = "none"
+            document.getElementById("buttonSampah").style.display = "none"
+
 
 
 
