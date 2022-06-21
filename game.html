@@ -84,7 +84,8 @@
     </div>
 
     <!-- <button type="button" class="btn btn-primary m-1" onclick="BFS()">Start</button> -->
-    <button id="buttonSampah" type="button" style="display: none;" class="btn btn-primary m-1" onclick="addSampahRandom()">Add Sampah</button>
+    <button id="buttonSampah" type="button" style="display: none;" class="btn btn-primary m-1"
+        onclick="addSampahRandom()">Add Sampah</button>
     <button id="buttonRobotView" style="display: none;" type="button" class="btn btn-primary m-1"
         onclick="displayRobot(this.innerHTML)">View All Robot</button>
     <button id="generateMap" type="button" class="btn btn-primary m-1" onclick="generateRoom(this.innerHTML)">Generate
@@ -178,7 +179,7 @@
             robotStr_ = `<img src="assets/robot.gif" alt="Computer man" style="width:50px;height:50px;opacity:0.25;">`;
             trashStr = `<img src="assets/sampah.png" alt="Trash">`;
 
-         
+
             move_list = [];
 
             tidakBisaKlikMapLagi = true
@@ -204,7 +205,7 @@
             document.getElementById("buttonRobotView").style.display = "inline-block"
             document.getElementById("buttonSampah").style.display = "inline-block"
 
-            max_move = (size_x*size_y)*10
+            max_move = (size_x * size_y) * 10
 
             // alert(max_move)
 
@@ -289,26 +290,26 @@
 
         function addSampahRandom() {
             pilihanSampah = Math.floor(Math.random() * 6)
-            
+
             if (pilihanSampah == 0) {
                 dataSampah = '<img src="assets/sampah_0.png" alt="Trash"  style="width:50px;height:50px;">'
             } else if (pilihanSampah == 1) {
                 dataSampah = '<img src="assets/sampah_1.gif" alt="Trash"  style="width:50px;height:50px;">'
-                
+
             } else if (pilihanSampah == 2) {
                 dataSampah = '<img src="assets/sampah_2.gif" alt="Trash"  style="width:50px;height:50px;">'
-                
+
             } else if (pilihanSampah == 3) {
                 dataSampah = '<img src="assets/sampah_3.gif" alt="Trash"  style="width:50px;height:50px;">'
-                
+
             } else if (pilihanSampah == 4) {
                 dataSampah = '<img src="assets/sampah_4.gif" alt="Trash"  style="width:50px;height:50px;">'
-                
+
             } else if (pilihanSampah == 5) {
                 dataSampah = '<img src="assets/sampah_5.gif" alt="Trash"  style="width:50px;height:50px;">'
-                
+
             }
-            
+
             // loop cek untuk yang sudah terisi sampe ketemu randoman yang beda
             document.getElementById(Math.floor(Math.random() * map_size[0]) + "," + Math.floor(Math.random() * map_size[1])).innerHTML = dataSampah
         }
