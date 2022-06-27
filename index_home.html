@@ -64,22 +64,25 @@
             class="fas fa-robot animate__animated animate__shakeY animate__infinite	infinite"></i></h1>
 
         <div class="col-12 mt-4">
-          <center><a href="https://www.w3schools.com"><button type="button "
+          <center><a href="index_game_1.html"><button type="button "
                 class="btn btn-success animate__animated animate__tada animate__infinite	infinite">AI 1 🎮</button></a>
           </center>
         </div>
 
         <div class="col-12 mt-3">
-          <center><a href="https://www.w3schools.com"><button type="button "
-                class="btn btn-success animate__animated animate__tada animate__infinite	infinite">AI 1 🎮</button></a>
+          <center><a href="index_game_2.html"><button type="button "
+                class="btn btn-success animate__animated animate__tada animate__infinite	infinite">AI 2 🎮</button></a>
           </center>
         </div>
 
+        
         <div class="col-12 mt-3">
-          <center><a href="https://www.w3schools.com"><button type="button "
-                class="btn btn-success animate__animated animate__tada animate__infinite	infinite">AI 1 🎮</button></a>
+          <center><a href="index_game_3.html"><button type="button "
+                class="btn btn-success animate__animated animate__tada animate__infinite	infinite">AI 2 🎮</button></a>
           </center>
         </div>
+
+
 
 
 
@@ -96,31 +99,48 @@
 
 
   <script>
-    let counter = 0
+    var counter = 0
+    var run;
+    var run1;
 
-    setInterval(function () {
+    run = setInterval(animasiFade, 3000)
 
-
+    function animasiFade(){
+      
       if (counter == 0) {
-        document.getElementById("fadeBg").className = "col-8 bgBody2 animate__animated animate__fadeInDown"
+        document.getElementById("fadeBg").className = "col-8 bgBody2 animate__animated animate__fadeIn"
         counter+=1
       } else if (counter == 1) {
-        document.getElementById("fadeBg").className = "col-8 bgBody3 w3-animate-fading"
+        document.getElementById("fadeBg").className = "col-8 bgBody3 animate__animated animate__fadeIn"
         counter+=1
-
       } else {
-        document.getElementById("fadeBg").className = "col-8 bgBody1 animate__animated  animate__fadeIn"
+        document.getElementById("fadeBg").className = "col-8 bgBody1  animate__animated animate__fadeIn"
         counter=0
-
       }
+      
+      run1 = setInterval(deleteClassAnimasiBiarGakNyantol, 500)
+      
+    }
 
 
-   
+    function deleteClassAnimasiBiarGakNyantol(){
+      if (counter == 0) {
+        document.getElementById("fadeBg").className = "col-8 bgBody1"
+        counter+=1
+      } else if (counter == 1) {
+        document.getElementById("fadeBg").className = "col-8 bgBody2"
+        counter+=1
+      } else {
+        document.getElementById("fadeBg").className = "col-8 bgBody3"
+        counter=0
+      }
+      clearInterval(run1)
+    }
       
 
 
 
-    }, 2000);
+
 
   
 
