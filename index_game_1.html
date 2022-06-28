@@ -17,6 +17,11 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
         integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous" />
 
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+
     <title>Smart Cleaner 4.0 🤖</title>
 
     <style>
@@ -43,27 +48,19 @@
             min-height: -webkit-fill-available;
         }
 
-        .tes_cursor_0 {
+        /* .tes_cursor_0 {
             cursor: url(assets/robot_0_icon.png) 25 25, pointer;
-        }
+        } */
     </style>
 </head>
 
 <body>
     <div id="comment">
-        <!-- task -->
-        <!-- otomatisasi robot -->
-        <!-- fitur pilih2 robot -->
-        <!-- fitur ganti theme map -->
-        <!-- fitur jenis2 kotoran -->
-        <!-- count timer step -->
-        <!-- pengecekan keluar dari map -->
-        <!-- energi keceptaan robot -->
-        <!-- speed robot -->
+
     </div>
 
     <div class="container-fluid">
-        <a href="index_home.html" style="color: black;"><i class="fas fa-home"></i></a>
+        <a href="index_home.html" style="color: black;"><i id="xx1" class="fas fa-home"></i></a>
         <i class="fas fa-moon" onclick="modeDarkLight(this.className)" style="cursor: pointer;">Dark-Mode</i>
 
         <div class="accordion m-2" id="accordionExample">
@@ -230,11 +227,6 @@
 
     </div>
 
-    <!-- Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-        crossorigin="anonymous"></script>
-
     <script>
         loadVar();
 
@@ -275,8 +267,6 @@
             document.getElementById("buttonSampah").style.display = "inline-block"
 
             max_move = ((size_x + 1) * (size_y + 1))
-
-            // alert(max_move)
 
         }
 
@@ -467,6 +457,7 @@
 
                 document.getElementsByClassName(mode)[0].innerHTML = "Dark-Mode"
                 document.getElementsByClassName(mode)[0].className = "fas fa-moon"
+                document.getElementById("xx1").style.color = "black"
 
             } else {
                 document.getElementsByTagName('body')[0].style.backgroundColor = "black";
@@ -479,6 +470,8 @@
 
                 document.getElementsByClassName(mode)[0].innerHTML = "Light-Mode"
                 document.getElementsByClassName(mode)[0].className = "fas fa-sun"
+                document.getElementById("xx1").style.color = "white"
+
 
             }
 
@@ -503,26 +496,26 @@
         function pilihRobot(pil, darah) {
             $('#modalRobot').modal('toggle');
             if (pil == 1) {
-                var data = [`<img src="assets/robot_0.gif" alt="Computer man" style="width:50px;height:50px;">`, `url(assets/robot_0_icon.png) 25 25, pointer`];
+                var data = [`<img src="assets/robot_0.gif" alt="Computer man" style="width:50px;height:50px;">`, `url(assets/robot_0_icon.png) 25 25, pointer`, `<img src="assets/robot_0.gif" alt="Computer man" style="width:50px;height:50px;opacity:0.25;">`];
                 pilihPosisiRobot(data)
             } else if (pil == 2) {
-                var data = [`<img src="assets/robot_1.gif" alt="Computer man" style="width:50px;height:50px;">`, `url(assets/robot_1_icon.png) 25 25, pointer`]
+                var data = [`<img src="assets/robot_1.gif" alt="Computer man" style="width:50px;height:50px;">`, `url(assets/robot_1_icon.png) 25 25, pointer`, `<img src="assets/robot_1.gif" alt="Computer man" style="width:50px;height:50px;opacity:0.25;">`]
                 pilihPosisiRobot(data)
 
             } else if (pil == 3) {
-                var data = [`<img src="assets/robot_2.gif" alt="Computer man" style="width:50px;height:50px;">`, `url(assets/robot_2_icon.png) 25 25, pointer`]
+                var data = [`<img src="assets/robot_2.gif" alt="Computer man" style="width:50px;height:50px;">`, `url(assets/robot_2_icon.png) 25 25, pointer`, `<img src="assets/robot_2.gif" alt="Computer man" style="width:50px;height:50px;opacity:0.25;">`]
                 pilihPosisiRobot(data)
 
             } else if (pil == 4) {
-                var data = [`<img src="assets/robot_3.gif" alt="Computer man" style="width:50px;height:50px;">`, `url(assets/robot_3_icon.png) 25 25, pointer`]
+                var data = [`<img src="assets/robot_3.gif" alt="Computer man" style="width:50px;height:50px;">`, `url(assets/robot_3_icon.png) 25 25, pointer`, `<img src="assets/robot_3.gif" alt="Computer man" style="width:50px;height:50px;opacity:0.25;">`]
                 pilihPosisiRobot(data)
 
             } else if (pil == 5) {
-                var data = [`<img src="assets/robot_4_1.gif" alt="Computer man" style="width:50px;height:50px;">`, `url(assets/robot_4_1.jpg) 25 25, pointer`]
+                var data = [`<img src="assets/robot_4_1.gif" alt="Computer man" style="width:50px;height:50px;">`, `url(assets/robot_4_1.jpg) 25 25, pointer`, `<img src="assets/robot_4_1.gif" alt="Computer man" style="width:50px;height:50px;opacity:0.25;">`]
                 pilihPosisiRobot(data)
 
             } else if (pil == 6) {
-                var data = [`<img src="assets/robot_6.gif" alt="Computer man" style="width:50px;height:50px;">`, `url(assets/robot_6_icon.png) 25 25, pointer`]
+                var data = [`<img src="assets/robot_6.gif" alt="Computer man" style="width:50px;height:50px;">`, `url(assets/robot_6_icon.png) 25 25, pointer`, `<img src="assets/robot_6.gif" alt="Computer man" style="width:50px;height:50px;opacity:0.25;">`]
                 pilihPosisiRobot(data)
 
             }
@@ -539,8 +532,6 @@
 
         // fungsi untuk meletakan robot setelah memilih robot
         function mapAktifToKlik(custom_cursor) {
-
-
             get = document.getElementsByClassName("tile border border-1 rounded")
 
             // loop
@@ -557,8 +548,8 @@
                         robotPos_ = this.id.split(",");
                         moveRobot(this.id.split(","), this.id.split(","));
                         tidakBisaKlikMapLagi = false;
-                        // BFS(this.id.split(","));
-                        DFS(this.id.split(","));
+                        BFS(this.id.split(","));
+                        // DFS(this.id.split(","));
                     }
                 };
 
