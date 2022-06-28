@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <script src="./dist/bundle.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <!-- Jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="game.js"></script>
+    <script src="robots.js"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+        integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous" />
+
+    <title>Smart Cleaner 4.0 🤖</title>
+
+    <style>
+        #room {
+            width: max-content;
+        }
+
+        .tile {
+            width: 128px;
+            height: 128px;
+            float: left;
+        }
+
+        .go_next {
+            float: none;
+        }
+
+        img {
+            min-width: -webkit-fill-available;
+            min-height: -webkit-fill-available;
+        }
+
+        .side {  
+            width: 550px;
+        }
+        .op {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- task -->
+    <!-- otomatisasi robot -->
+    <!-- fitur pilih2 robot -->
+    <!-- fitur ganti theme map -->
+    <!-- fitur jenis2 kotoran -->
+    <!-- count timer step -->
+    <!-- pengecekan keluar dari map -->
+    <!-- energi keceptaan robot -->
+    <!-- speed robot -->
+
+    <i class="fas fa-moon" onclick="modeDarkLight(this.className)" style="cursor: pointer; position:absolute; bottom: 100px; right: 50px;">Darkmode</i>
+
+    <div class="Main" style="display: flex; justify-content: space-around;">
+        <div id="room">
+
+        </div>
+
+        <div class='side' id="0" style="display: block;">
+            <center>
+            <h2>Choose A Map! :</h2>
+            <br>
+            <button type="button" class="btn btn-primary" style="width: 400px; display: block; margin: 10px;" onclick="loadMap(1)">Map 1</button>
+            <button type="button" class="btn btn-primary" style="width: 400px; display: block; margin: 10px;" onclick="loadMap(2)">Map 2</button>
+            <button type="button" class="btn btn-primary" style="width: 400px; display: block; margin: 10px;" onclick="loadMap(0)">Randomize</button>
+            <div style="display: flex; justify-content: space-around;"><div><label>Width: </label><input value='20' id="w" type="text" style="width: 100px;"></div><div><label>Height: </label><input value='20' id="h" type="text" style="width: 100px;"></div></div>
+            
+            <button type="button" class="btn btn-primary" style="width: 400px; display: block; margin: 10px; position: relative; top: 100px;" onclick="Next('1')">Next</button>
+            </center>
+        </div>
+
+        <div class='side' id="1" style="display: none;">
+            <center>
+            <h2>Choose Your Robots!:</h2>
+            <div id="listRobot" class="d-flex">
+                <div class="op">
+                    <div draggable="true" ondragstart="drag(event, 1)" style="background-color: red; height:100px; width:100px; margin:auto;"></div>
+                    <div class="card-body" style="font-size: 15px; text-align: center;">
+                        <b class="card-title">Robot Kay-O</b>
+                        <p class="card-text">Targets a Trash directly</p>
+                    </div> 
+                </div>
+                <div class="op">
+                    <div draggable="true" ondragstart="drag(event, 2)" style="background-color: blue; height:100px; width:100px; margin:auto;"></div>
+                    <div class="card-body" style="font-size: 15px; text-align: center;">
+                        <b class="card-title">Robot Kay-O</b>
+                        <p class="card-text">Targets 10 steps ahead of the Trash</p>
+                    </div> 
+                </div>
+                <div class="op">
+                    <div draggable="true" ondragstart="drag(event, 3)" style="background-color: green; height:100px; width:100px; margin:auto;"></div>
+                    <div class="card-body" style="font-size: 15px; text-align: center;">
+                        <b class="card-title">Robot Kay-O</b>
+                        <p class="card-text">Targets Random until a Trash gets too Close</p>
+                    </div> 
+                </div>
+                <div class="op">
+                    <div draggable="true" ondragstart="drag(event, 4)" style="background-color: gold; height:100px; width:100px; margin:auto;"></div>
+                    <div class="card-body" style="font-size: 15px; text-align: center;">
+                        <b class="card-title">Robot Kay-O</b>
+                        <p class="card-text">Work with Robot 1 to Circle the Trash</p>
+                    </div> 
+                </div>
+                <div class="op">
+                    <div draggable="true" ondragstart="drag(event, 5)" style="background-color: indigo; height:100px; width:100px; margin:auto;"></div>
+                    <div class="card-body" style="font-size: 15px; text-align: center;">
+                        <b class="card-title">Robot Kay-O</b>
+                        <p class="card-text">Target the Trash until it gets too Close</p>
+                    </div> 
+                </div>
+            </div>            
+            <button type="button" class="btn btn-primary m-1" style="width: 400px; display: block; margin: 10px;"onclick="randomBot()">Randomize</button>
+            <div><label>Number of Bots: </label><input value='3' id="n_b" type="text" style="width: 100px;"></div>
+            <button type="button" class="btn btn-primary m-1" style="width: 400px; display: block; margin: 10px; position: relative; top: 100px;"onclick="Next('2')">Next</button>
+            <button type="button" class="btn btn-primary m-1" style="width: 400px; display: block; margin: 10px; position: relative; top: 110px;" onclick="Next('0')">Back</button>
+            </center>
+        </div>
+
+        <div class='side' id="2" style="display: none;">
+            <center>
+            <h2>Choose Your Trashes!:</h2>            
+            <button type="button" class="btn btn-primary m-1" style="width: 400px; display: block; margin: 10px;"onclick="randomTrash()">Randomize</button>
+            <div><label>Number of Trashes: </label><input value='10' id="n_t" type="text" style="width: 100px;"></div>
+            <button type="button" class="btn btn-primary m-1" style="width: 400px; display: block; margin: 10px; position: relative; top: 100px;" onclick="Start();">Start</button>
+            <button type="button" class="btn btn-primary m-1" style="width: 400px; display: block; margin: 10px; position: relative; top: 110px;" onclick="Next('1')">Back</button>
+            </center>
+        </div>
+
+        <div class='side' id="3" style="display: none;">
+            <center>
+            <div id="botscore"></div>
+            <button type="button" id="playpause" class="btn btn-primary m-1" style="width: 400px; display: block; margin: 10px; position: relative; top: 100px;" onclick="Pause(this.innerHTML)">Pause</button>
+            <button type="button" class="btn btn-primary m-1" style="width: 400px; display: block; margin: 10px; position: relative; top: 110px;" onclick="NewGame();">New Game</button>
+            </center>
+        </div>
+    </div>
+</body>
+</html>
+
+<script>
+    function Next(page) {
+        document.getElementById('0').style.display = 'none';
+        document.getElementById('1').style.display = 'none';
+        document.getElementById('2').style.display = 'none';
+        document.getElementById('3').style.display = 'none';
+        document.getElementById(page).style.display = 'block';
+    }
+</script>
+
+
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p "
+        crossorigin="anonymous"></script>
+
+    <script>
+        generateRoom(25, 25);
+
+        function generateRoom(size_x, size_y) {
+            var str = '';
+            for (let i = 0; i < size_x; i++) {
+                for (let j = 0; j < size_y; j++) {
+                    str += "<div ondrop='drop(event)' ondragover='allowDrop(event)' class='tile border border-1' style='width: 30px; height: 30px;' id='" + i + "," + j + "'></div>";
+                }
+                str += "<div class='tile go_next'  style='width: 30px; height: 30px;' ></div>";
+            }
+            document.getElementById("room").innerHTML = str;
+        }
+
+        // function changeSavedMode() {
+            const mode =  localStorage.getItem('mode')
+            modeDarkLight(mode)
+        // }
+
+        function modeDarkLight(mode) {
+            localStorage.setItem('mode', mode)
+            if (mode == "fas fa-sun") {
+                document.getElementsByTagName('body')[0].style.backgroundColor = "white";
+                document.getElementsByTagName('body')[0].style.color = "black";
+                document.getElementsByClassName(mode)[0].innerHTML = "Darkmode"
+                document.getElementsByClassName(mode)[0].className = "fas fa-moon"
+            } else {
+                document.getElementsByTagName('body')[0].style.backgroundColor = "black";
+                document.getElementsByTagName('body')[0].style.color = "white";
+                document.getElementsByClassName(mode)[0].innerHTML = "Lightmode"
+                document.getElementsByClassName(mode)[0].className = "fas fa-sun"
+            }
+        }
+
+        var type = -1
+        function allowDrop(ev) {
+          ev.preventDefault();
+        }
+
+        function drag(ev, t) {
+          ev.dataTransfer.setData("text", ev.target.id);
+          type = t
+        }
+
+        function drop(ev) {
+          var clr = ['red', 'blue', 'green', 'gold', 'indigo']
+          const pos = [parseInt(ev.target.id.split(",")[0]), parseInt(ev.target.id.split(",")[1])]
+          ev.preventDefault();
+          if (map[pos[0]][pos[1]] == 0) {
+            ev.target.style.backgroundColor = clr[type - 1]
+            addBot(type, pos)
+          } else { Swal.fire('Invalid Space') } 
+        }
+    </script>
