@@ -201,7 +201,7 @@ function updateRobotPosition() {
 
             // Robot 1 follows the target
             if (robot.type == 1) { robot.target = target.pos; }
-            // Robot 2 follows 5 steps ahead of the target
+            // Robot 2 follows 10 steps ahead of the target
             if (robot.type == 2) { 
                 robot.target = [target.direction > 1? target.pos[0] : target.direction == 0? target.pos[0] - 10 : target.pos[0] + 10, target.direction < 2? target.pos[1] : target.direction == 2? target.pos[1] - 10 : target.pos[1] + 10];
                 robot.target[0] = Math.max(Math.min(robot.target[0], map.length - 1), 0)
@@ -218,7 +218,7 @@ function updateRobotPosition() {
                 if (robottofollow == null) {
                     return target.pos
                 }
-                var t = [robottofollow.pos[0] < target.pos[0]? target.pos[0] + (target.pos[0] - robottofollow.pos[0]) : robottofollow.pos[0] - (target.pos[0] - robottofollow.pos[0]), robottofollow.pos[1] < target.pos[1]? target.pos[1] + (target.pos[1] - robottofollow.pos[1]) : robottofollow.pos[1] - (target.pos[1] - robottofollow.pos[1])]
+                var t = [robottofollow.pos[0] > target.pos[0]? target.pos[0] + (target.pos[0] - robottofollow.pos[0]) : robottofollow.pos[0] - (target.pos[0] - robottofollow.pos[0]), robottofollow.pos[1] > target.pos[1]? target.pos[1] + (target.pos[1] - robottofollow.pos[1]) : robottofollow.pos[1] - (target.pos[1] - robottofollow.pos[1])]
                 t[0] = Math.max(Math.min(t[0], map.length - 1), 0)
                 t[1] = Math.max(Math.min(t[1], map[0].length - 1), 0)
                 return t
@@ -371,8 +371,11 @@ function loadBots() {
         for (let j = 1; j < robots[i].path.length; j++) {
             document.getElementById(robots[i].path[j][0] + "," + robots[i].path[j][1]).style.backgroundColor = botColor[robots[i].type - 1][1]
         }
+    }
+    for (var i = 0; i < robots.length; i++) {
         document.getElementById(robots[i].pos[0] + "," + robots[i].pos[1]).style.backgroundColor = botColor[robots[i].type - 1][0]
     }
+
     for (var i = 0; i < trashes.length; i++) {
         if (trashes[i].alive) {document.getElementById(trashes[i].pos[0] + "," + trashes[i].pos[1]).style.backgroundColor = 'brown'}
     }
