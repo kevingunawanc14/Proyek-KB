@@ -1,11 +1,6 @@
 # Proyek-KB
 
-## AI 1
-
-Create two kind of artifical inteligence robot to clean a trash
-1. IMPLEMENT DFS (Depth-First Search) 
-2. IMPLEMENT BFS (Breadth-First Search)
-3. IMPLEMENT 
+Create three kind of artifical inteligence robot to clean a trash using javascript,html
 
 ### Home Page
 <p float="left">
@@ -13,7 +8,19 @@ Create two kind of artifical inteligence robot to clean a trash
   <img src="" width="272" /> 
 </p>
 
-### AI Page
+### AI 1
+<p float="left">
+  <img src="" width="272" />
+  <img src="" width="272" /> 
+</p>
+
+### AI 2
+<p float="left">
+  <img src="" width="272" />
+  <img src="" width="272" /> 
+</p>
+
+### AI 3
 <p float="left">
   <img src="" width="272" />
   <img src="" width="272" /> 
