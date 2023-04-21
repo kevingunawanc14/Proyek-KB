@@ -8,7 +8,7 @@ Create three kind of artifical inteligence robot to clean a trash using javascri
   <img src="" width="272" /> 
 </p>
 
-### AI 1
+### AI 1 
 <p float="left">
   <img src="" width="272" />
   <img src="" width="272" /> 
