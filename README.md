@@ -1,30 +1,21 @@
 # Proyek-KB
-
-Create three kind of artifical inteligence robot to clean a trash using javascript,html
+Create three kind of artifical inteligence robot to clean a trash using javascript,html implement dfs,bfs,another machine learning method
 
 ### Home Page
-<p float="left">
-  <img src="" width="272" />
-  <img src="" width="272" /> 
-</p>
+![home_page_proyek_kb](https://user-images.githubusercontent.com/83412242/233724535-b2eaa435-d4e2-406e-ba21-eb9024ad1b1a.png)
+
 
 ### AI 1 
-<p float="left">
-  <img src="" width="272" />
-  <img src="" width="272" /> 
-</p>
+![home_page_proyek_kb](https://user-images.githubusercontent.com/83412242/233724535-b2eaa435-d4e2-406e-ba21-eb9024ad1b1a.png)
+
 
 ### AI 2
-<p float="left">
-  <img src="" width="272" />
-  <img src="" width="272" /> 
-</p>
+![home_page_proyek_kb](https://user-images.githubusercontent.com/83412242/233724535-b2eaa435-d4e2-406e-ba21-eb9024ad1b1a.png)
+
 
 ### AI 3
-<p float="left">
-  <img src="" width="272" />
-  <img src="" width="272" /> 
-</p>
+![home_page_proyek_kb](https://user-images.githubusercontent.com/83412242/233724535-b2eaa435-d4e2-406e-ba21-eb9024ad1b1a.png)
+
 
 
 
